@@ -1,4 +1,4 @@
-
+//8
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2); //Change the HEX address
@@ -40,32 +40,128 @@ void setup() {
 
 void loop() {
 
-  if (digitalRead (IR1) == LOW && flag1 == 0) {
-    if (Slot > 0) {
+  switch (Slot) {
+
+    case 4:
+      lcd.setCursor (0, 0);
+      lcd.print("    WELCOME!    ");
+      lcd.setCursor (0, 1);
+      lcd.print("Slot Left: ");
+      lcd.print(Slot);
+      if (digitalRead (IR1) == LOW && flag1 == 0)  {
+        digitalWrite(Red_led, LOW);
+        digitalWrite(Green_led, HIGH);
+        flag1 = 1;
+        if (flag2 == 0) {
+          myservo1.write(0);
+          Slot = Slot - 1;
+
+        }     delay(150);
+      }
+
+      break;
+
+    case 3:
+      lcd.setCursor (0, 0);
+      lcd.print("    WELCOME!    ");
+      lcd.setCursor (0, 1);
+      lcd.print("Slot Left: ");
+      lcd.print(Slot);
+      if (digitalRead (IR1) == LOW && flag1 == 0)  {
+        digitalWrite(Red_led, LOW);
+        digitalWrite(Green_led, HIGH);
+        flag1 = 1;
+        if (flag2 == 0) {
+          myservo1.write(0);
+          Slot = Slot - 1;
+
+        }     delay(150);
+      }
+
+      break;
+
+    case 2:
+      lcd.setCursor (0, 0);
+      lcd.print("    WELCOME!    ");
+      lcd.setCursor (0, 1);
+      lcd.print("Slot Left: ");
+      lcd.print(Slot);
+      if (digitalRead (IR1) == LOW && flag1 == 0)  {
+        digitalWrite(Red_led, LOW);
+        digitalWrite(Green_led, HIGH);
+        flag1 = 1;
+        if (flag2 == 0) {
+          myservo1.write(0);
+          Slot = Slot - 1;
+
+        }     delay(150);
+      }
+
+      break;
+
+    case 1:
+      lcd.setCursor (0, 0);
+      lcd.print("    WELCOME!    ");
+      lcd.setCursor (0, 1);
+      lcd.print("Slot Left: ");
+      lcd.print(Slot);
+      if (digitalRead (IR1) == LOW && flag1 == 0)  {
+        digitalWrite(Red_led, LOW);
+        digitalWrite(Green_led, HIGH);
+        flag1 = 1;
+        if (flag2 == 0) {
+          myservo1.write(0);
+          Slot = Slot - 1;
+
+        }     delay(150);
+      }
+
+      break;
+
+    case 0:
+      digitalWrite(Red_led, HIGH);
+      digitalWrite(Green_led, LOW);
+      lcd.setCursor (0, 0);
+      lcd.print("    SORRY!    ");
+      lcd.setCursor (0, 1);
+      lcd.print("PARKING FULL");
+
+      break;
+
+
+  }
+
+  /*
+    if (Slot > 0)  {
+    lcd.setCursor (0, 0);
+    lcd.print("    WELCOME!    ");
+    lcd.setCursor (0, 1);
+    lcd.print("Slot Left: ");
+    lcd.print(Slot);
+    if (digitalRead (IR1) == LOW && flag1 == 0)  {
       digitalWrite(Red_led, LOW);
       digitalWrite(Green_led, HIGH);
       flag1 = 1;
       if (flag2 == 0) {
         myservo1.write(0);
         Slot = Slot - 1;
-        
-      }
+
+      }     delay(150);
+    }
     }
 
-    else {
-      digitalWrite(Red_led, HIGH);
-      digitalWrite(Green_led, LOW);
-      lcd.setCursor (0, 0);
-      lcd.print("    SORRY :(    ");
-      lcd.setCursor (0, 1);
-      lcd.print("  Parking Full  ");
-      lcd.clear();
-    }
-  }
+    else if (Slot == 0) {
+    digitalWrite(Red_led, HIGH);
+    digitalWrite(Green_led, LOW);
+    lcd.setCursor (0, 0);
+    lcd.print("    SORRY!    ");
+    lcd.setCursor (0, 1);
+    lcd.print("PARKING FULL");
+    }*/
 
   if (digitalRead (IR2) == LOW && flag2 == 0) {
     flag2 = 1;
-    if (flag1 == 0) {
+    if (flag1 == 0 && Slot != 4) {
       myservo1.write(0);
       Slot = Slot + 1;
     }
@@ -77,10 +173,6 @@ void loop() {
     flag1 = 0, flag2 = 0;
   }
 
-  lcd.setCursor (0, 0);
-  lcd.print("    WELCOME!    ");
-  lcd.setCursor (0, 1);
-  lcd.print("Slot Left: ");
-  lcd.print(Slot);
 
-    }
+
+}
